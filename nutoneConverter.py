@@ -16,15 +16,22 @@ def nutoneConvert(overwrite):
     with open('nutoneNotes.json') as f:
         conversionTable = json.load(f)
     for item in os.listdir('nutone'):
-        print(item)
         textFile = open(f'nutone/{item}', 'r').read().split(', ')
-        item = item.split('.')[0]
-        print(textFile)            
+        item = item.split('.')[0]          
         mid = MidiFile()
         track = MidiTrack()
         mid.tracks.append(track)
-        # TODO: Input ask for program number
-        track.append(Message('program_change', program=18, time=0))
+        print(f'Converting file: {item}')
+        program = 18
+        programInput = input('Please enter the number of midi instrument you would like to generate with.\n')
+        try:
+            program = int(programInput)
+        except ValueError:
+            print(f'Not a number, defaulting to program {program}')
+        if( program > 128):
+            print(f'Number too large, defaulting to program 18')
+            program = 18
+        track.append(Message('program_change', program=program, time=0))
 
         for note in textFile:
             if(note == '00'):
