@@ -35,9 +35,9 @@ def nutoneConvert(overwrite):
                 midiNote += 12
                 note = note[1:]
             midiNote +=  int(note[0], 12)
-            noteLenth *= int(note[1]) * 1000
+            noteLenth *= noteMultipliers[int(note[1])-1] * 1920
             print(f'{midiNote} | {noteLenth}\n')
-            track.append(Message('note_on', note=midiNote, velocity=64, time=int(noteLenth)))
+            track.append(Message('note_on', note=midiNote, velocity=127, time=0))
             track.append(Message('note_off', note=midiNote, velocity=127, time=int(noteLenth)))
         
         mid.save(f'converted/midi/{item}.mid')
