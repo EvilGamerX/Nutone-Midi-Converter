@@ -3,6 +3,7 @@ import os
 import json
 
 rootNote = 48
+noteMultipliers = [1, 2, 3, 4, 6, 8]
 
 def nutoneConvert(overwrite):
     if not os.path.exists('nutone'):
