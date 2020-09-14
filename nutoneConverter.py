@@ -23,8 +23,8 @@ def nutoneConvert(overwrite):
         mid = MidiFile()
         track = MidiTrack()
         mid.tracks.append(track)
-        track.append(Message('program_change', program=12, time=0))
-
+        # TODO: Input ask for program number
+        track.append(Message('program_change', program=18, time=0))
 
         for note in textFile:
             if(note == '00'):
